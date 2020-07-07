@@ -27,7 +27,7 @@ class Category(models.Model):
 
 class Post(models.Model):
     title = models.CharField(max_length=128, verbose_name="文章标题")
-    author = models.ForeignKey(User, verbose_name="博客作者")
+    author = models.ForeignKey(User, verbose_name="博客作者", on_delete=models.CASCADE)
     img = models.ImageField(upload_to='blog_images', null=True, blank=True, verbose_name="博客图片")
     body = models.TextField(verbose_name="博客正文")
     abstract = models.TextField(max_length=256, blank=True, null=True, verbose_name="博客摘要")
