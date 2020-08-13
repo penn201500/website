@@ -21,5 +21,5 @@ app_name = 'blog'
 urlpatterns = [
     path('', views.index, name='blog_index'),
     # re_path('(?P<blog_id>[0-9]+)/', views.detail, name='blog_detail'),
-    re_path('<int:blog_id>/', views.detail, name='blog_detail'),
+    path('<int:blog_id>/', views.detail, name='blog_detail'),
 ]
