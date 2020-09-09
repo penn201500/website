@@ -1,4 +1,34 @@
 {% extends 'blog/base.html' %}
 {% block title %} blog detail {% endblock %}
 
-{% block content %} blog {{ blog_id }}detail {% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <h1>{{ entry.title }}</h1>
+                <hr/>
+                <p>
+                    {{ entry.author }}
+                    &nbsp;&nbsp;{{ entry.created_time|date:'Y年m月d日' }}
+                    &nbsp;&nbsp;post:
+                    {% for category in entry.category.all %}
+                        <a href="">&nbsp;&nbsp;{{ category.name }}</a>
+                    {% endfor %}
+                    &nbsp;&nbsp;tag:
+                    {% for tag in entry.tags.all %}
+                        <a href="">&nbsp;&nbsp;{{ tag.name }}</a>
+                    {% endfor %}
+                    &nbsp;&nbsp;visiting:
+                    <a href="">&nbsp;&nbsp;{{ entry.visiting }}</a>
+                </p>
+                <hr/>
+                {% if entry.img %}
+                    <img alt="blog image here" src="{{ entry.img.url }}" width="20%" height="20%"/>
+                {% endif %}
+                <p>
+                    {{ entry.body }}
+                </p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
