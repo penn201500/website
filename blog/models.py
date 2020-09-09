@@ -44,6 +44,10 @@ class Post(models.Model):
     def get_absolute_url(self):
         return reverse('blog:blog_detail', kwargs={'blog_id': self.id})  # /blog/1
 
+    def increase_visiting(self):
+        self.visiting += 1
+        self.save(update_fields=['visiting'])
+
     class Meta:
         ordering = ['-created_time']
         verbose_name = "博客"
