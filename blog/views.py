@@ -1,3 +1,5 @@
+import markdown
+# import pygments
 from django.shortcuts import render
 from .models import Post
 
@@ -10,5 +12,12 @@ def index(request):
 
 def detail(request, blog_id):
     entry = Post.objects.get(id=blog_id)
+    md = markdown.Markdown(extensions=[
+        'markdown.extensions.extra',
+        'markdown.extensions.codehilite',
+        'markdown.extensions.toc',
+    ])
+    entry.body = md.convert(entry.body)
+    # entry.toc = md.toc
     entry.increase_visiting()
     return render(request, 'blog/detail.html', locals())
