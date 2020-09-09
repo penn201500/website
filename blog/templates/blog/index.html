@@ -2,5 +2,14 @@
 {% block title %}博客首页{% endblock %}
 
 {% block content %}
-    博客首页
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                {% for entry in entries %}
+                    <h2><a href="{{ en }}">{{ entry.title }}</a></h2>
+                {% endfor %}
+            </div>
+            博客文章1
+        </div>
+    </div>
 {% endblock %}
