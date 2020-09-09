@@ -18,6 +18,6 @@ def detail(request, blog_id):
         'markdown.extensions.toc',
     ])
     entry.body = md.convert(entry.body)
-    # entry.toc = md.toc
+    entry.toc = md.toc
     entry.increase_visiting()
     return render(request, 'blog/detail.html', locals())
