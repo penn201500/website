@@ -6,10 +6,23 @@
         <div class="row">
             <div class="col-md-9">
                 {% for entry in entries %}
-                    <h2><a href="{{ en }}">{{ entry.title }}</a></h2>
+                    <hr />
+                    <h2><a href="{{ entry.get_absolute_url }}">{{ entry.title }}</a></h2>
+                    {% if entry.img %}
+                    <img alt="blog image here" src="{{ entry.img.url }}" width="10%" height="10%" />
+                    {% endif %}
+                    {% if entry.abstract %}
+                    <p>{{ entry.abstract }}</p>
+                    {% else %}
+                    <p>{{ entry.body|truncatechars:30 }}</p>
+                    {% endif %}
+                    <p>
+                        <span>author: {{ entry.author }}</span>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;create_time: {{ entry.created_time }}</span>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;visit: {{ entry.visiting }}</span>
+                    </p>
                 {% endfor %}
             </div>
-            博客文章1
         </div>
     </div>
 {% endblock %}
