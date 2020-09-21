@@ -1,7 +1,7 @@
 import markdown
 # import pygments
 from django.shortcuts import render
-from .models import Post
+from .models import Post, Category, Tag
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
@@ -143,7 +143,8 @@ def index(request):
 
 
 def detail(request, blog_id):
-    entry = Post.objects.get(id=blog_id)
+    entry = dict()
+    post = Post.objects.get(id=blog_id)
     md = markdown.Markdown(extensions=[
         'markdown.extensions.extra',
         'markdown.extensions.codehilite',
@@ -153,3 +154,22 @@ def detail(request, blog_id):
     entry.toc = md.toc
     entry.increase_visiting()
     return render(request, 'blog/detail.html', locals())
+
+
+def category(request, category_id):
+    category_instance = Category.objects.get(id=category_id)
+    entries = Post.objects.filter(category=category_instance)
+    page = request.GET.get('page', 1)
+    entry_list, paginator = make_paginator(entries, page)
+    page_data = pagination_data(paginator, page)
+    return render(request, 'blog/index.html', locals())
+
+
+def tag(request, tag_id):
+    tag_instance = Tag.objects.get(id=tag_id)
+    entries = Post.objects.filter(tags=tag_instance)
+    page = request.GET.get('page', 1)
+    entry_list, paginator = make_paginator(entries, page)
+    page_data = pagination_data(paginator, page)
+    return render(request, 'blog/index.html', locals())
+

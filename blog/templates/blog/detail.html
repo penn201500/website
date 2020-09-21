@@ -15,13 +15,13 @@
                 <p>
                     {{ entry.author }}
                     &nbsp;&nbsp;{{ entry.created_time|date:'Y年m月d日' }}
-                    &nbsp;&nbsp;post:
+                    &nbsp;&nbsp;category:
                     {% for category in entry.category.all %}
-                        <a href="">&nbsp;&nbsp;{{ category.name }}</a>
+                        <a href="{% url 'blog:blog_category' category.id %}">&nbsp;&nbsp;{{ category.name }}</a>
                     {% endfor %}
                     &nbsp;&nbsp;tag:
                     {% for tag in entry.tags.all %}
-                        <a href="">&nbsp;&nbsp;{{ tag.name }}</a>
+                        <a href="{% url 'blog:blog_tag' tag.id %}">&nbsp;&nbsp;{{ tag.name }}</a>
                     {% endfor %}
                     &nbsp;&nbsp;visiting:
                     <a href="">&nbsp;&nbsp;{{ entry.visiting }}</a>
