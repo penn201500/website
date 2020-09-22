@@ -3,6 +3,7 @@ import markdown
 from django.shortcuts import render
 from .models import Post, Category, Tag
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.db.models import Q
 
 
 def make_paginator(objects, page, num=5):
@@ -143,8 +144,7 @@ def index(request):
 
 
 def detail(request, blog_id):
-    entry = dict()
-    post = Post.objects.get(id=blog_id)
+    entry = Post.objects.get(id=blog_id)
     md = markdown.Markdown(extensions=[
         'markdown.extensions.extra',
         'markdown.extensions.codehilite',
@@ -173,3 +173,15 @@ def tag(request, tag_id):
     page_data = pagination_data(paginator, page)
     return render(request, 'blog/index.html', locals())
 
+
+def search(request):
+    search_key = request.GET.get('keyword')
+    if not search_key:
+        return render(request, 'blog/index.html', locals())
+    else:
+        entries = Post.objects.filter(
+            Q(title__icontains=search_key) | Q(body__icontains=search_key) | Q(abstract__icontains=search_key))
+        page = request.GET.get('page', 1)
+        entry_list, paginator = make_paginator(entries, page)
+        page_data = pagination_data(paginator, page)
+        return render(request, 'blog/index.html', locals())
