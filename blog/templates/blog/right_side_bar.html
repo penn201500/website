@@ -39,6 +39,8 @@
             {% for entry in entry_list %}
                 <li class="list-group-item">
                     <a href="{% url 'blog:blog_tag' entry.id %}">{{ entry.name }}</a>
+                    <span class="badge"
+                          style="color: greenyellow;background-color: deepskyblue">{% get_count_of_category entry.id %}</span>
                 </li>
             {% endfor %}
         </ul>

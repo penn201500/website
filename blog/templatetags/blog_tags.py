@@ -40,3 +40,8 @@ def get_categories_entries():
     :return:
     """
     return Category.objects.all()
+
+
+@register.simple_tag()
+def get_count_of_category(category_id):
+    return Post.objects.filter(category=category_id).count()
