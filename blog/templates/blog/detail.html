@@ -38,7 +38,15 @@
             <div class="col-md-1">
             </div>
 
-            <div class="col-md-2"  style="margin-top: 50px">
+            <div class="col-md-2" style="margin-top: 50px">
+                {% block toc %}
+                    <div class="row">
+                        <div class="widget">
+                            <h3>TOC :</h3>
+                            {{ entry.toc|safe }}
+                        </div>
+                    </div>
+                {% endblock %}
                 {% include 'blog/right_side_bar.html' %}
             </div>
         </div>
