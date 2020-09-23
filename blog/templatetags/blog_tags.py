@@ -69,3 +69,13 @@ def get_archive_entries():
 @register.simple_tag()
 def get_count_of_archive(year, month):
     return Post.objects.filter(created_time__year=year, created_time__month=month).count()
+
+
+@register.simple_tag()
+def get_tags_entries():
+    return Tag.objects.all()
+
+
+@register.simple_tag()
+def get_count_of_tag(tag_id):
+    return Post.objects.filter(tags=tag_id).count()
