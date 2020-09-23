@@ -1,0 +1,14 @@
+{% load blog_tags %}
+
+<div class="row">
+    <div class="widget, pull-right">
+        <h3>Latest Blog</h3>
+        {% get_latest_entries as recent_entry_list %}
+        {% for entry in recent_entry_list %}
+            <div>
+                <a href="{{ entry.get_absolute_url }}">{{ entry.title }}</a>
+                <div>{{ entry.author }} {{ entry.created_time }}</div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
