@@ -69,14 +69,10 @@
     <div class="widget, pull-left">
         <h3>Tags Cloud</h3>
         {% get_tags_entries as entry_list %}
-        <ul class="list-group" style="display: inline-block">
             {% for entry in entry_list %}
-                <li class="list-group-item">
-                    <a href="{% url 'blog:blog_tag' entry.id %}">{{ entry.name }}</a>
-                    <span class="badge"
-                          style="color: greenyellow;background-color: deepskyblue">{% get_count_of_tag entry.id %}</span>
-                </li>
+                    <a href="{% url 'blog:blog_tag' entry.id %}">
+                        <span class="label {% cycle 'label-default' 'label-primary' 'label-success' 'label-info' 'label-warning' 'label-danger' %}">{{ entry.name }}</span>
+                    </a>
             {% endfor %}
-        </ul>
     </div>
 </div>
