@@ -1,9 +1,24 @@
 {% load blog_tags %}
 
+
 <div class="row">
-    <div class="widget, pull-right">
+    <div class="widget, pull-left">
         <h3>Latest Blog</h3>
         {% get_latest_entries as recent_entry_list %}
+        {% for entry in recent_entry_list %}
+            <div>
+                <a href="{{ entry.get_absolute_url }}">{{ entry.title }}</a>
+                <div>{{ entry.author }} {{ entry.created_time }}</div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+<div class="row" style="margin-top: 20px">
+    <div class="widget, pull-left">
+        <h3>Most Visited</h3>
+        {% get_most_visited_entries as recent_entry_list %}
         {% for entry in recent_entry_list %}
             <div>
                 <a href="{{ entry.get_absolute_url }}">{{ entry.title }}</a>

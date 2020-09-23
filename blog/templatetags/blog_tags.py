@@ -16,3 +16,17 @@ def get_latest_entries(num=5):
         return Post.objects.all().order_by('-created_time')[:num]
     else:
         return Post.objects.all()
+
+
+@register.simple_tag()
+def get_most_visited_entries(num=5):
+    """
+    获取访问最多的博客，默认5个
+    :param num:
+    :return:
+    """
+    blogs = Post.objects.all().order_by('-visiting')
+    if len(blogs) >= num:
+        return Post.objects.all().order_by('-visiting')[:num]
+    else:
+        return Post.objects.all()
