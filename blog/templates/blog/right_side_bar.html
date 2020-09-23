@@ -31,7 +31,7 @@
     </div>
 </div>
 
-<div class="row" style="margin-top: 20px;margin-bottom: 50px">
+<div class="row" style="margin-top: 20px">
     <div class="widget, pull-left">
         <h3>Categories</h3>
         {% get_categories_entries as entry_list %}
@@ -41,6 +41,24 @@
                     <a href="{% url 'blog:blog_tag' entry.id %}">{{ entry.name }}</a>
                     <span class="badge"
                           style="color: greenyellow;background-color: deepskyblue">{% get_count_of_category entry.id %}</span>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+<div class="row" style="margin-top: 20px;margin-bottom: 50px">
+    <div class="widget, pull-left">
+        <h3>Archives</h3>
+        {% get_archive_entries as entry_list %}
+        <ul class="list-group" style="display: inline-block">
+            {% for entry in entry_list %}
+                <li class="list-group-item">
+                    <a href="{% url 'blog:blog_archive' entry.year entry.month %}">
+                        {{ entry.year }} {{ entry.month }}
+                    </a>
+                    <span class="badge"
+                          style="color: greenyellow;background-color: deepskyblue">{% get_count_of_archive entry.year entry.month %}</span>
                 </li>
             {% endfor %}
         </ul>

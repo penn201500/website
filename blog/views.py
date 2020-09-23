@@ -185,3 +185,11 @@ def search(request):
         entry_list, paginator = make_paginator(entries, page)
         page_data = pagination_data(paginator, page)
         return render(request, 'blog/index.html', locals())
+
+
+def archive(request, year, month):
+    entries = Post.objects.filter(created_time__year=year, created_time__month=month)
+    page = request.GET.get('page', 1)
+    entry_list, paginator = make_paginator(entries, page)
+    page_data = pagination_data(paginator, page)
+    return render(request, 'blog/index.html', locals())

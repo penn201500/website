@@ -45,3 +45,27 @@ def get_categories_entries():
 @register.simple_tag()
 def get_count_of_category(category_id):
     return Post.objects.filter(category=category_id).count()
+
+
+@register.simple_tag()
+def get_categories_entries():
+    """
+    获取所有分类
+    :param num:
+    :return:
+    """
+    return Category.objects.all()
+
+
+@register.simple_tag()
+def get_archive_entries():
+    """
+    归档
+    :return:
+    """
+    return Post.objects.dates('created_time', 'month', order='DESC')
+
+
+@register.simple_tag()
+def get_count_of_archive(year, month):
+    return Post.objects.filter(created_time__year=year, created_time__month=month).count()
