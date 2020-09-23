@@ -21,6 +21,7 @@ from blog.feed import LatestEntriesFeed
 from django.contrib.sitemaps import GenericSitemap
 from django.contrib.sitemaps.views import sitemap
 from blog.models import Post
+from blog import views
 
 info_dict = {
     'queryset': Post.objects.all(),
@@ -28,6 +29,7 @@ info_dict = {
 }
 
 urlpatterns = [
+                  path('', views.index, name='blog_index'),
                   path('admin/', admin.site.urls),
                   path('blog/', include('blog.urls')),
                   path('latest/feed/', LatestEntriesFeed()),
