@@ -65,14 +65,22 @@
     </div>
 </div>
 
-<div class="row" style="margin-top: 20px;margin-bottom: 50px">
+<div class="row" style="margin-top: 20px">
     <div class="widget, pull-left">
         <h3>Tags Cloud</h3>
         {% get_tags_entries as entry_list %}
-            {% for entry in entry_list %}
-                    <a href="{% url 'blog:blog_tag' entry.id %}">
-                        <span class="label {% cycle 'label-default' 'label-primary' 'label-success' 'label-info' 'label-warning' 'label-danger' %}">{{ entry.name }}</span>
-                    </a>
-            {% endfor %}
+        {% for entry in entry_list %}
+            <a href="{% url 'blog:blog_tag' entry.id %}">
+                <span class="label {% cycle 'label-default' 'label-primary' 'label-success' 'label-info' 'label-warning' 'label-danger' %}">{{ entry.name }}</span>
+            </a>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="row" style="margin-top: 20px;margin-bottom: 50px">
+    <div class="rss">
+        <a href="/latest/feed/">
+            <h3>RSS</h3>
+        </a>
     </div>
 </div>
