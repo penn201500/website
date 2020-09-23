@@ -5,7 +5,8 @@ from django.utils.deprecation import MiddlewareMixin
 
 
 class ApiMiddleware(MiddlewareMixin):
-    def process_response(self, request, response):
+    @staticmethod
+    def process_response(request, response):
         if response.status_code == status.HTTP_403_FORBIDDEN:
             return render(response, 'blog/403.html', locals())
 
