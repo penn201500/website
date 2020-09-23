@@ -23,9 +23,24 @@
             <div>
                 <a href="{{ entry.get_absolute_url }}">{{ entry.title }}</a>
                 <button class="btn btn-primary" type="button">
-                    <span class="badge" style="color: greenyellow;background-color: deepskyblue">{{ entry.visiting }}</span>
+                    <span class="badge"
+                          style="color: greenyellow;background-color: deepskyblue">{{ entry.visiting }}</span>
                 </button>
             </div>
         {% endfor %}
+    </div>
+</div>
+
+<div class="row" style="margin-top: 20px;margin-bottom: 50px">
+    <div class="widget, pull-left">
+        <h3>Categories</h3>
+        {% get_categories_entries as entry_list %}
+        <ul class="list-group" style="display: inline-block">
+            {% for entry in entry_list %}
+                <li class="list-group-item">
+                    <a href="{% url 'blog:blog_tag' entry.id %}">{{ entry.name }}</a>
+                </li>
+            {% endfor %}
+        </ul>
     </div>
 </div>

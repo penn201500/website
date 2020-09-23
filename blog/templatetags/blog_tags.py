@@ -30,3 +30,13 @@ def get_most_visited_entries(num=5):
         return Post.objects.all().order_by('-visiting')[:num]
     else:
         return Post.objects.all()
+
+
+@register.simple_tag()
+def get_categories_entries():
+    """
+    获取所有分类
+    :param num:
+    :return:
+    """
+    return Category.objects.all()
