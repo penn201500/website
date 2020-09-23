@@ -18,9 +18,19 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
 from blog.feed import LatestEntriesFeed
+from django.contrib.sitemaps import GenericSitemap
+from django.contrib.sitemaps.views import sitemap
+from blog.models import Post
+
+info_dict = {
+    'queryset': Post.objects.all(),
+    'date_field': 'modified_time'
+}
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('blog/', include('blog.urls')),
-    path('latest/feed/', LatestEntriesFeed()),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+                  path('admin/', admin.site.urls),
+                  path('blog/', include('blog.urls')),
+                  path('latest/feed/', LatestEntriesFeed()),
+                  path('sitemap.xml', sitemap, {'sitemaps': {'blog': GenericSitemap(info_dict, priority=0.6)}},
+                       name='django.contrib.sitemaps.views.sitemap'),
+              ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
