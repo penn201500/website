@@ -20,6 +20,7 @@
                         <span>author: {{ entry.author }}</span>
                         <span>&nbsp;&nbsp;&nbsp;&nbsp;create_time: {{ entry.created_time }}</span>
                         <span>&nbsp;&nbsp;&nbsp;&nbsp;visit: {{ entry.visiting }}</span>
+                        &nbsp;&nbsp;category:
                         {% for category in entry.category.all %}
                             <a href="{% url 'blog:blog_category' category.id %}">&nbsp;&nbsp;{{ category.name }}</a>
                         {% endfor %}
