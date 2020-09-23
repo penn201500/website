@@ -5,8 +5,7 @@ from django.utils.deprecation import MiddlewareMixin
 
 
 class ApiMiddleware(MiddlewareMixin):
-    @staticmethod
-    def process_response(response):
+    def process_response(self, request, response):
         message = ""
         code = 1
 

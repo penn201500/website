@@ -1,9 +1,9 @@
 import markdown
-# import pygments
 from django.shortcuts import render
 from .models import Post, Category, Tag
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
+from django.shortcuts import get_object_or_404
 
 
 def make_paginator(objects, page, num=5):
@@ -144,7 +144,7 @@ def index(request):
 
 
 def detail(request, blog_id):
-    entry = Post.objects.get(id=blog_id)
+    entry = get_object_or_404(Post, id=blog_id)
     md = markdown.Markdown(extensions=[
         'markdown.extensions.extra',
         'markdown.extensions.codehilite',
@@ -157,7 +157,7 @@ def detail(request, blog_id):
 
 
 def category(request, category_id):
-    category_instance = Category.objects.get(id=category_id)
+    category_instance = get_object_or_404(Category, id=category_id)
     entries = Post.objects.filter(category=category_instance)
     page = request.GET.get('page', 1)
     entry_list, paginator = make_paginator(entries, page)
@@ -166,7 +166,7 @@ def category(request, category_id):
 
 
 def tag(request, tag_id):
-    tag_instance = Tag.objects.get(id=tag_id)
+    tag_instance = get_object_or_404(Tag, id=tag_id)
     entries = Post.objects.filter(tags=tag_instance)
     page = request.GET.get('page', 1)
     entry_list, paginator = make_paginator(entries, page)
