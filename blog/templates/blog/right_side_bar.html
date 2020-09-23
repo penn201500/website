@@ -22,7 +22,9 @@
         {% for entry in recent_entry_list %}
             <div>
                 <a href="{{ entry.get_absolute_url }}">{{ entry.title }}</a>
-                <div>{{ entry.author }} {{ entry.created_time }}</div>
+                <button class="btn btn-primary" type="button">
+                    <span class="badge" style="color: greenyellow;background-color: deepskyblue">{{ entry.visiting }}</span>
+                </button>
             </div>
         {% endfor %}
     </div>
