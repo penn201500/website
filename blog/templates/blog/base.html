@@ -36,7 +36,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/blog/"><img src="{% static 'blog/images/logo.jpg' %}" /></a>
+            <a class="navbar-brand" href="/blog/"><img src="{% static 'blog/images/logo.jpg' %}"/></a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -53,10 +53,10 @@
                 </div>
                 <button type="submit" class="btn btn-default">Search</button>
             </form>
-{#            <ul class="nav navbar-nav navbar-right">#}
-{#                <li><a href="#">Login</a></li>#}
-{#                <li><a href="#">Logout</a></li>#}
-{#            </ul>#}
+            {#            <ul class="nav navbar-nav navbar-right">#}
+            {#                <li><a href="#">Login</a></li>#}
+            {#                <li><a href="#">Logout</a></li>#}
+            {#            </ul>#}
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
@@ -64,19 +64,19 @@
 {% block content %}
 {% endblock %}
 <div id="back-to-top">
-    <i class="glyphicon glyphicon-arrow-up"></i>
+    <i class="glyphicon glyphicon-chevron-up"></i>
 </div>
 
-    <footer>
+<footer>
     <div class="footer" role="navigation">
         <div class="container">
             <div class="footer-text">
-{#                <ul class="footer-text">#}
-{#                    <li><a href="#">About</a></li>#}
-{#                    <li><a href="/blog/">Home</a></li>#}
-{#                </ul>#}
+                {#                <ul class="footer-text">#}
+                {#                    <li><a href="#">About</a></li>#}
+                {#                    <li><a href="/blog/">Home</a></li>#}
+                {#                </ul>#}
                 <li>Learn More, Learn Better</li>
-                <p>Copyright © 2020  Penn's Blog</p>
+                <p>Copyright © 2020 Penn's Blog</p>
             </div>
         </div>
     </div>
@@ -85,6 +85,11 @@
 <script src="{% static 'jquery-3.5.1.min.js' %}"></script>
 <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
 <script src="{% static 'bootstrap-3.3.7-dist/js/bootstrap.min.js' %}"></script>
+<script>
+    $("#back-to-top").click(function () {
+        window.scrollTo(0, 0);
+    });
+</script>
 {% block script %}
 {% endblock %}
 </body>
