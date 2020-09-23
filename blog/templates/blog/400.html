@@ -1,0 +1,10 @@
+{% extends 'blog/base.html' %}
+{% block title %}400{% endblock %}
+
+{% block content %}
+    <div class="container text-center" style="min-height:600px;">
+        <h1>400, Bad Request!</h1>
+        <h2>缺少必要的请求参数或参数错误!</h2>
+        <a class="btn btn-primary" href="{% url 'blog:blog_index' %}">返回主页</a>
+    </div>
+{% endblock %}
